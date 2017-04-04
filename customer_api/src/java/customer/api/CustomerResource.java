@@ -30,5 +30,4 @@ public class CustomerResource {
 
 		return (Response.ok(customer.toJSON()).build());
 	}
-	
 }
