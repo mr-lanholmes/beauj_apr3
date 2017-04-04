@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+		<h1>Customer Query</h1>
+
+		<h:form id="queryForm">
+
+			Customer id:
+			<h:inputText value="#{customerQueryView.customerId}" 
+						 required="true" 
+						 requiredMessage="Please enter the customer id">
+				<f:validateDoubleRange minimum="1"/>
+			</h:inputText>
+			<h:commandButton value="Search" action="#{customerQueryView.findCustomer()}"/>
+
+			<h:panelGroup rendered="#{not empty customerQueryView.customer}">
+				<h2>Customer Details</h2>
+				<h:panelGrid columns="2">
+					Name:
+					<h:inputText value="#{customerQueryView.customer.name}"/>
+
+					Address:
+					<h:inputText value="#{customerQueryView.customer.addressline1}"/>
+
+					Address:
+					<h:inputText value="#{customerQueryView.customer.addressline2}"/>
+
+					City:
+					<h:inputText value="#{customerQueryView.customer.city}"/>
+
+					State:
+					<h:inputText value="#{customerQueryView.customer.state}"/>
+
+					Phone:
+					<h:inputText value="#{customerQueryView.customer.phone}"/>
+
+					Fax:
+					<h:inputText value="#{customerQueryView.customer.fax}"/>
+
+					Email:
+					<h:inputText value="#{customerQueryView.customer.email}"/>
+
+					Discount:
+					<h:inputText value="#{customerQueryView.customer.discountCode}"/>
+
+					Credit Limit:
+					<h:inputText value="#{customerQueryView.customer.creditLimit}"/>
+
+				</h:panelGrid>
+
+				<h2>Orders for #{customerQueryView.customerId}</h2>
+				<h:dataTable var="po" border="1"
+							 value="#{customerQueryView.customer.purchaseOrders}">
+
+					<h:column>
+						<f:facet name="header">Order Number</f:facet>
+						<h:outputText value="#{po.orderNumber}"/>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Product Id</f:facet>
+						<h:outputText value="#{po.productId}"/>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Quantity</f:facet>
+						<h:outputText value="#{po.quantity}"/>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Sales Date </f:facet>
+						<h:outputText value="#{po.salesDate}">
+							<f:convertDateTime pattern="MM-dd-YYYY"/>
+						</h:outputText>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Shipping Date</f:facet>
+						<h:outputText value="#{po.shippingDate}">
+							<f:convertDateTime pattern="MM-dd-YYYY"/>
+						</h:outputText>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Shipping Cost </f:facet>
+						<h:outputText value="#{po.shippingCost}">
+							<f:convertDateTime pattern="MM-dd-YYYY"/>
+						</h:outputText>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Freight</f:facet>
+						<h:outputText value="#{po.freightCompany}"/>
+					</h:column>
+
+				</h:dataTable>
+
+			</h:panelGroup>
+
+		</h:form>
+    </h:body>
+</html>
+

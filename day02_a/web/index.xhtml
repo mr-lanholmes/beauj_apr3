@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+		<h1>Shopping Cart</h1>
+		<h:form id="formId">
+
+			<h:panelGrid columns="3" id="gridId">
+				Name: 
+				<h:inputText value="#{shoppingView.name}" id="nameField"
+						   required="true" requiredMessage="Name is mandatory" />
+				<h:message for="nameField" style="color: red; font-weight: bold;"/>
+
+				Quantity: 
+				<h:inputText value="#{shoppingView.quantity}" id="quantityField"
+							 converterMessage="This must be a number">
+					<f:validateDoubleRange minimum="5"/>
+				</h:inputText>
+				<h:message for="quantityField"/>
+
+
+				Size: 
+				<h:selectOneMenu value="#{shoppingView.size}">
+					<f:selectItems value="#{shoppingView.sizes()}"/>
+				</h:selectOneMenu>
+				<h:panelGroup/>
+
+			</h:panelGrid>
+
+			<h:commandButton value="Add to Cart" 
+					 action="#{shoppingView.addToCart()}"/>
+
+			<h:commandLink value="Add to Cart" 
+					 action="#{shoppingView.addToCart()}"/>
+
+		</h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+		<h2>You have <h:outputText value="#{shoppingView.cart.items.size()}"/> item(s) in your cart</h2>
+
+		<h:form>
+			<h:dataTable var="i" value="#{shoppingView.cart.items}" border="1">
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{i.name}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Quantity</f:facet>
+					<h:outputText value="#{i.quantity}"/>
+					<f:facet name="footer">Total = #{shoppingView.cart.count()}</f:facet>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Size</f:facet>
+					<h:outputText value="#{i.size}"/>
+				</h:column>
+			</h:dataTable>
+			<h:commandLink value="Back" action="index?faces-redirect=true"/>
+		</h:form>
+    </h:body>
+</html>
+
