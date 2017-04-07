@@ -10,9 +10,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 @SessionScoped
+//@ViewScoped
 @Named
 public class AddMembersView implements Serializable {
 

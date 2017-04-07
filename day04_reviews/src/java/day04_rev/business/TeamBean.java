@@ -13,6 +13,17 @@ public class TeamBean {
 
 	@PersistenceContext private EntityManager em;
 
+	public Team findByTeamNumber(Integer teamNum) {
+		TypedQuery<Team> query = em.createQuery(
+				"select t from Team t where t.teamNumber = :tno", 
+				Team.class);
+		query.setParameter("tno", teamNum);
+		List<Team> result = query.getResultList();
+		if (result.isEmpty())
+			return (null);
+		return (result.get(0));
+	}
+
 	public Team findTeam(String teamId) {
 		return (em.find(Team.class, teamId));
 	}
